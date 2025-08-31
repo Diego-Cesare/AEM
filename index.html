@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="title">
+            <h1>AEM</h1>
+            <span>App estimador para materiais</span>
+        </div>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <path fill="#4db6ac"
+                    d="M11.9,12h-0.68l8.04-8.04c2.62-2.61,6.86-2.61,9.48,0L36.78,12H36.1c-1.6,0-3.11,0.62-4.24,1.76	l-6.8,6.77c-0.59,0.59-1.53,0.59-2.12,0l-6.8-6.77C15.01,12.62,13.5,12,11.9,12z">
+                </path>
+                <path fill="#4db6ac"
+                    d="M36.1,36h0.68l-8.04,8.04c-2.62,2.61-6.86,2.61-9.48,0L11.22,36h0.68c1.6,0,3.11-0.62,4.24-1.76	l6.8-6.77c0.59-0.59,1.53-0.59,2.12,0l6.8,6.77C32.99,35.38,34.5,36,36.1,36z">
+                </path>
+                <path fill="#4db6ac"
+                    d="M44.04,28.74L38.78,34H36.1c-1.07,0-2.07-0.42-2.83-1.17l-6.8-6.78c-1.36-1.36-3.58-1.36-4.94,0	l-6.8,6.78C13.97,33.58,12.97,34,11.9,34H9.22l-5.26-5.26c-2.61-2.62-2.61-6.86,0-9.48L9.22,14h2.68c1.07,0,2.07,0.42,2.83,1.17	l6.8,6.78c0.68,0.68,1.58,1.02,2.47,1.02s1.79-0.34,2.47-1.02l6.8-6.78C34.03,14.42,35.03,14,36.1,14h2.68l5.26,5.26	C46.65,21.88,46.65,26.12,44.04,28.74z">
+                </path>
+            </svg>
+        </button>
+    </header>
+    <main>
+        <div class="type">
+            <h3>Selecione o tipo de trabalho.</h3>
+            <div class="types">
+                <button id="concret">Concreto</button>
+                <button id="subfloor">Contra-piso</button>
+                <button id="plaster">Reboco</button>
+            </div>
+        </div>
+        <h3>Indique o traço a ser usado.</h3>
+        <div class="measure">
+            <input type="number" name="" id="typeSand" placeholder="Areia">
+            <input type="number" name="" id="typeStone" placeholder="Pedra">
+            <input type="number" name="" id="typeCement" placeholder="Cimento">
+        </div>
+        <button id="setMeasure">Selecionar</button>
+        <div class="type-selected">
+            <div class="execute">
+                <h3>Executar</h3>
+                <span id="typeSelect"></span>
+            </div>
+            <div class="execute">
+                <h3>Medidas</h3>
+                <span id="measureSelect"></span>
+            </div>
+        </div>
+        <div class="inputs">
+            <label for="width">Indique o comprimento/altura da area.</label>
+            <input type="number" name="width" id="width">
+            <label for="height">Indique a largura da area</label>
+            <input type="number" name="height" id="height">
+            <label for="esp">Indique a espessura.</label>
+            <input type="number" name="esp" id="esp">
+            <div class="actions">
+                <button id="calc">Calcular</button>
+                <button id="clean">Limpar</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h3>Resultado</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Areia</td>
+                    <td id="resAreia">0 m³</td>
+                </tr>
+                <tr>
+                    <td>Pedra</td>
+                    <td id="resPedra">0 m³</td>
+                </tr>
+                <tr>
+                    <td>Cimento</td>
+                    <td>
+                        <span id="resCimentoSacas">0 sacas</span>
+                        (<span id="resCimentoKg">0 kg</span>)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </footer>
+    <script src="types.js"></script>
+    <script src="calc.js"></script>
+</body>
+
+</html>
