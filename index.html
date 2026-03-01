@@ -39,72 +39,307 @@
       </button>
     </header>
     <main>
-      <fieldset class="box">
-        <legend>Selecione o tipo de trabalho.</legend>
-        <div class="types">
-          <button id="concret">Concreto</button>
-          <button id="subfloor">Contra-piso</button>
-          <button id="plaster">Reboco</button>
-        </div>
-      </fieldset>
-      <h3>Indique o traço a ser usado.</h3>
-      <div class="measure">
-        <input type="number" name="" id="typeSand" placeholder="Areia" />
-        <input type="number" name="" id="typeStone" placeholder="Pedra" />
-        <input type="number" name="" id="typeCement" placeholder="Cimento" />
+      <div class="tabs" role="tablist" aria-label="Selecione a calculadora">
+        <button
+          id="tabMaterialsBtn"
+          class="tab-btn is-active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="materialsPanel"
+          data-tab-target="materialsPanel"
+        >
+          Materiais
+        </button>
+        <button
+          id="tabPaintBtn"
+          class="tab-btn"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="paintPanel"
+          data-tab-target="paintPanel"
+        >
+          Tinta
+        </button>
+        <button
+          id="tabMortarBtn"
+          class="tab-btn"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="mortarPanel"
+          data-tab-target="mortarPanel"
+        >
+          Argamassa
+        </button>
+        <button
+          id="tabCeilingBtn"
+          class="tab-btn"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="ceilingPanel"
+          data-tab-target="ceilingPanel"
+        >
+          Forro
+        </button>
       </div>
-      <button id="setMeasure">Usar</button>
-      <div class="type-selected">
-        <div class="execute">
-          <h3>Executar</h3>
-          <span id="typeSelect"></span>
+
+      <section id="materialsPanel" class="tab-panel" role="tabpanel">
+        <fieldset class="box">
+          <legend>Selecione o tipo de trabalho.</legend>
+          <div class="types">
+            <button id="concret">Concreto</button>
+            <button id="subfloor">Contra-piso</button>
+            <button id="plaster">Reboco</button>
+          </div>
+        </fieldset>
+        <h3>Indique o traço a ser usado.</h3>
+        <div class="measure">
+          <input type="number" name="" id="typeSand" placeholder="Areia" />
+          <input type="number" name="" id="typeStone" placeholder="Pedra" />
+          <input type="number" name="" id="typeCement" placeholder="Cimento" />
         </div>
-        <div class="execute">
-          <h3>Medidas</h3>
-          <span id="measureSelect"></span>
+        <button id="setMeasure">Usar</button>
+        <div class="type-selected">
+          <div class="execute">
+            <h3>Executar</h3>
+            <span id="typeSelect"></span>
+          </div>
+          <div class="execute">
+            <h3>Medidas</h3>
+            <span id="measureSelect"></span>
+          </div>
         </div>
-      </div>
-      <div class="inputs">
-        <label for="width">Indique o comprimento/altura da area.</label>
-        <input type="number" name="width" id="width" />
-        <label for="height">Indique a largura da area</label>
-        <input type="number" name="height" id="height" />
-        <label for="esp">Indique a espessura.</label>
-        <input type="number" name="esp" id="esp" />
-        <div class="actions">
-          <button id="calc">Calcular</button>
-          <button id="clean">Limpar</button>
+        <div class="inputs">
+          <label for="width">Indique o comprimento/altura da area.</label>
+          <input type="number" name="width" id="width" />
+          <label for="height">Indique a largura da area</label>
+          <input type="number" name="height" id="height" />
+          <label for="esp">Indique a espessura.</label>
+          <input type="number" name="esp" id="esp" />
+          <div class="actions">
+            <button id="calc">Calcular</button>
+            <button id="clean">Limpar</button>
+          </div>
         </div>
-      </div>
+        <footer>
+          <h3>Resultado</h3>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Material</th>
+                <th>Quantidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Areia</td>
+                <td id="resAreia">0 m³</td>
+              </tr>
+              <tr>
+                <td>Pedra</td>
+                <td id="resPedra">0 m³</td>
+              </tr>
+              <tr>
+                <td>Cimento</td>
+                <td>
+                  <span id="resCimentoSacas">0 sacas</span>
+                  (<span id="resCimentoKg">0 kg</span>)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </footer>
+      </section>
+
+      <section id="paintPanel" class="tab-panel" role="tabpanel" hidden>
+        <fieldset class="box">
+          <legend>Cálculo de tinta</legend>
+          <div class="paint-grid">
+            <label for="paintWidth">Comprimento da área (m)</label>
+            <input type="number" id="paintWidth" placeholder="Ex.: 5" />
+            <label for="paintHeight">Altura/largura da área (m)</label>
+            <input type="number" id="paintHeight" placeholder="Ex.: 2.8" />
+            <label for="paintCoats">Demãos</label>
+            <input type="number" id="paintCoats" value="2" min="1" />
+            <label for="paintYield">Rendimento (m² por litro)</label>
+            <input type="number" id="paintYield" value="10" min="1" />
+            <label for="paintLoss">Margem de perda (%)</label>
+            <input type="number" id="paintLoss" value="10" min="0" />
+          </div>
+          <div class="actions">
+            <button id="calcPaint" type="button">Calcular tinta</button>
+            <button id="clearPaint" type="button">Limpar</button>
+          </div>
+        </fieldset>
+
+        <footer>
+          <h3>Resultado da tinta</h3>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Área considerada</td>
+                <td id="resPaintArea">0 m²</td>
+              </tr>
+              <tr>
+                <td>Tinta necessária</td>
+                <td id="resPaintLiters">0 L</td>
+              </tr>
+              <tr>
+                <td>Latas de 18 L</td>
+                <td id="resPaint18">0 unidades</td>
+              </tr>
+              <tr>
+                <td>Galões de 3,6 L</td>
+                <td id="resPaint36">0 unidades</td>
+              </tr>
+            </tbody>
+          </table>
+        </footer>
+      </section>
+
+      <section id="mortarPanel" class="tab-panel" role="tabpanel" hidden>
+        <fieldset class="box">
+          <legend>Cálculo de argamassa para assentamento</legend>
+          <div class="mortar-grid">
+            <label for="mortarLength">Comprimento da área (m)</label>
+            <input type="number" id="mortarLength" placeholder="Ex.: 6" />
+            <label for="mortarWidth">Largura da área (m)</label>
+            <input type="number" id="mortarWidth" placeholder="Ex.: 3" />
+            <label for="mortarType">Tipo de revestimento</label>
+            <select id="mortarType">
+              <option value="piso" data-consumption="4.5">Piso cerâmico</option>
+              <option value="porcelanato" data-consumption="5.5">Porcelanato</option>
+            </select>
+            <label for="mortarConsumption">Consumo (kg/m²)</label>
+            <input type="number" id="mortarConsumption" value="4.5" min="0.1" />
+            <label for="mortarLoss">Margem de perda (%)</label>
+            <input type="number" id="mortarLoss" value="10" min="0" />
+          </div>
+          <div class="actions">
+            <button id="calcMortar" type="button">Calcular argamassa</button>
+            <button id="clearMortar" type="button">Limpar</button>
+          </div>
+        </fieldset>
+
+        <footer>
+          <h3>Resultado da argamassa</h3>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Área considerada</td>
+                <td id="resMortarArea">0 m²</td>
+              </tr>
+              <tr>
+                <td>Argamassa necessária</td>
+                <td id="resMortarKg">0 kg</td>
+              </tr>
+              <tr>
+                <td>Sacos de 20 kg</td>
+                <td id="resMortarBags20">0 unidades</td>
+              </tr>
+              <tr>
+                <td>Sacos de 15 kg</td>
+                <td id="resMortarBags15">0 unidades</td>
+              </tr>
+            </tbody>
+          </table>
+        </footer>
+      </section>
+
+      <section id="ceilingPanel" class="tab-panel" role="tabpanel" hidden>
+        <fieldset class="box">
+          <legend>Cálculo de taqueamento de forro</legend>
+          <div class="ceiling-grid">
+            <label for="ceilingLength">Comprimento do ambiente (m)</label>
+            <input type="number" id="ceilingLength" placeholder="Ex.: 6" />
+            <label for="ceilingWidth">Largura do ambiente (m)</label>
+            <input type="number" id="ceilingWidth" placeholder="Ex.: 4" />
+            <label for="ceilingSpacing">Espaçamento entre ripas (cm)</label>
+            <input type="number" id="ceilingSpacing" value="40" min="10" />
+            <label for="ceilingDirection">Sentido do taqueamento</label>
+            <select id="ceilingDirection">
+              <option value="auto">Automático (menor consumo)</option>
+              <option value="length">Ripas no comprimento</option>
+              <option value="width">Ripas na largura</option>
+            </select>
+            <label for="ceilingPerimeter">Madeiramento perimetral</label>
+            <select id="ceilingPerimeter">
+              <option value="yes">Sim</option>
+              <option value="no">Não</option>
+            </select>
+            <label for="ceilingWoodLoss">Perda de madeira (%)</label>
+            <input type="number" id="ceilingWoodLoss" value="10" min="0" />
+            <label for="ceilingLiningLoss">Perda de forro (%)</label>
+            <input type="number" id="ceilingLiningLoss" value="10" min="0" />
+          </div>
+          <div class="actions">
+            <button id="calcCeiling" type="button">Calcular forro</button>
+            <button id="clearCeiling" type="button">Limpar</button>
+          </div>
+        </fieldset>
+
+        <footer>
+          <h3>Resultado do forro</h3>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Área do forro</td>
+                <td id="resCeilingArea">0 m²</td>
+              </tr>
+              <tr>
+                <td>Forro com perda</td>
+                <td id="resCeilingAreaWithLoss">0 m²</td>
+              </tr>
+              <tr>
+                <td>Sentido adotado</td>
+                <td id="resCeilingDirection">-</td>
+              </tr>
+              <tr>
+                <td>Linhas de taqueamento</td>
+                <td id="resCeilingLines">0 linhas</td>
+              </tr>
+              <tr>
+                <td>Madeira do taqueamento</td>
+                <td id="resCeilingWoodLinear">0 m linear</td>
+              </tr>
+              <tr>
+                <td>Madeiramento perimetral</td>
+                <td id="resCeilingPerimeter">0 m linear</td>
+              </tr>
+              <tr>
+                <td>Madeira total</td>
+                <td id="resCeilingWoodTotal">0 m linear</td>
+              </tr>
+              <tr>
+                <td>Madeira com perda</td>
+                <td id="resCeilingWoodWithLoss">0 m linear</td>
+              </tr>
+            </tbody>
+          </table>
+        </footer>
+      </section>
     </main>
-    <footer>
-      <h3>Resultado</h3>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Material</th>
-            <th>Quantidade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Areia</td>
-            <td id="resAreia">0 m³</td>
-          </tr>
-          <tr>
-            <td>Pedra</td>
-            <td id="resPedra">0 m³</td>
-          </tr>
-          <tr>
-            <td>Cimento</td>
-            <td>
-              <span id="resCimentoSacas">0 sacas</span>
-              (<span id="resCimentoKg">0 kg</span>)
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </footer>
     <div class="modal-backdrop" id="pixModal" aria-hidden="true">
       <div
         class="modal-card"
@@ -129,6 +364,9 @@
     </div>
     <script src="types.js"></script>
     <script src="calc.js"></script>
+    <script src="paint.js"></script>
+    <script src="mortar.js"></script>
+    <script src="ceiling.js"></script>
     <script src="pix.js"></script>
   </body>
 </html>

@@ -39,12 +39,14 @@ button {
 }
 
 button,
-input {
+input,
+select {
   min-height: 44px;
 }
 
 button:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--hc);
   outline-offset: 2px;
 }
@@ -105,6 +107,37 @@ main {
   gap: var(--space-3);
 }
 
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.tab-btn {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0 8px;
+}
+
+.tab-btn.is-active {
+  background: var(--hc);
+  color: #fff;
+  border-color: var(--hc);
+}
+
+.tab-panel {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
 fieldset {
   border: solid 1px var(--line);
   border-radius: var(--radius);
@@ -149,7 +182,7 @@ legend {
 }
 
 .measure {
-  display: flex;
+  display: grid;
   gap: var(--space-2);
 }
 
@@ -239,7 +272,10 @@ h3 {
   margin-top: 8px;
 }
 
-#calc {
+#calc,
+#calcPaint,
+#calcMortar,
+#calcCeiling {
   background-color: var(--hc);
   width: 100%;
   border: none;
@@ -249,7 +285,10 @@ h3 {
   font-weight: 600;
 }
 
-#clean {
+#clean,
+#clearPaint,
+#clearMortar,
+#clearCeiling {
   background-color: var(--dc);
   width: 100%;
   border: none;
@@ -257,6 +296,33 @@ h3 {
   font-size: 1rem;
   border-radius: 10px;
   font-weight: 600;
+}
+
+.paint-grid,
+.mortar-grid,
+.ceiling-grid {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.paint-grid label,
+.mortar-grid label,
+.ceiling-grid label {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 2px;
+}
+
+.paint-grid input,
+.mortar-grid input,
+.mortar-grid select,
+.ceiling-grid input,
+.ceiling-grid select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 12px;
+  background-color: var(--card);
 }
 
 footer {
@@ -362,6 +428,10 @@ body.modal-open {
 }
 
 @media (min-width: 520px) {
+  .tabs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .measure {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }

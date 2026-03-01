@@ -62,7 +62,7 @@ if (calcBtn) {
 
 if (cleanBtn) {
   cleanBtn.addEventListener("click", () => {
-    const inputs = document.querySelectorAll("input");
+    const inputs = document.querySelectorAll("#materialsPanel input");
 
     inputs.forEach((input) => {
       input.value = "";
